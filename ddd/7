@@ -1,0 +1,52 @@
+//
+
+//title
+svg.append("text")
+  .attr({
+    "font-size": 16,
+    "": ,
+    "": ,
+    "": ,
+  });
+  .text("");
+
+  function click(d) {
+    path.transition()
+      .duration(750)
+      .attrTween("d", arcTween(d));
+    mouseout();
+  };
+
+  function mouseover(d){
+    tooltip.text(d.key + ": " +
+      d.value + " sighting" +
+      (d.value > 1 ? "s" : ""))
+      .transition()
+      .attr("fill-opacity", 1);
+  };
+
+  function mouseout() {
+    tooltip.transition()
+      .attr("fill-opacity", 0);
+  };
+});
+
+  function arcTween(d) {
+    var xd = d3.interpolate(x.domain(),
+          [d.x, d.x + d.dx]),
+        yd = d3.interpolate(y.domain(),
+          [d.y, 1]),
+	yr = d3.interpolate(y.range(),
+	  [d.y ? 20 : 0, radius]);
+    return function(d, i) {
+      return i ?
+        function(t) {
+	  return arc(d);
+	} :
+	function(t) {
+	  x.domain(xd(t));
+	  y.domain(yd(t)).range(yr(t));
+	  return arc(d);
+	}
+    }
+  }
