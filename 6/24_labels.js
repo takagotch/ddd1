@@ -1,5 +1,18 @@
+//w, h
+
+//svg
+svg.selectAll("circle")
+  .data(dataset)
+  .enter()
+  .append("circle")
+  .attr({
+    cx: function(d) { return d[0];}
+    cy: function(d) { return d[1];}
+    r:  function(d) { return Math.sqrt(h - d[1]);}
+  });
+
 svg.slectAll("text")
-  .data("dataset")
+  .data(dataset)
   .enter( )
   .append("text")
   .text(function(d) {
@@ -12,3 +25,5 @@ svg.slectAll("text")
     font-size:   11px,
     fill:         red
   });
+
+
