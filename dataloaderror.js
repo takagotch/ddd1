@@ -1,3 +1,4 @@
+#DataLoadError
 var dataset;
 
 d3.csv("income.csv", function(error, data){
@@ -5,6 +6,7 @@ d3.csv("income.csv", function(error, data){
     console.log(error);
   }else{
     console.log(data);
+  //
   dataset = data;
   generateVis();
   hideLoadingMsg();
